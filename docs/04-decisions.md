@@ -72,4 +72,33 @@ Format: **Decision** · **Context** · **Why** · **Alternatives considered**.
 - **Why:** OpenAI is the most ubiquitous/easiest to start; isolating it in the backend means
   changing providers never touches the app.
 
+### D9 — Downgraded to SDK 55; Expo Go still incompatible; using web + dev build path
+- **Context:** Expo Go on the App Store is frozen at SDK 54. SDK 55 and 56 are only
+  supported via development builds or TestFlight betas. We tried downgrading from SDK 56
+  → 55 → considered 54, but even SDK 55 didn't work with the App Store version.
+- **Decision:** Stay on **SDK 55** (stable, one version back from latest). Use **web
+  (localhost)** for development now. Set up a **development build** via EAS once the Apple
+  Developer account ($99/year) is approved — that gives us our own version of Expo Go
+  installed as a real app on the phone.
+- **Why:** Web works identically for Phases 1–4 (navigation, database, chat UI, parser).
+  The dev build is the proper long-term solution and is needed anyway for notifications
+  (Phase 5) and TestFlight delivery (Phase 8). Downgrading further to SDK 54 would mean
+  older React Native and missing features.
+- **What we learned:** Expo Go is an educational/starter tool, not the production dev
+  workflow. Real Expo projects use development builds. This is normal, not a failure.
+
+### D10 — Habits are opt-in gamification only (updates D7)
+- **Context:** The LLM classified "wash dishes every day" as a habit because it's recurring.
+  But we decided habits should feel like a deliberate choice to gamify something.
+- **Decision:** Only create a habit when the user explicitly says "track X", "new habit X",
+  or "start tracking X". Everything else (even recurring reminders) is a task.
+- **Why:** You don't want to "gamify" doing dishes. Habits are for things you want to build
+  streaks on — meditation, reading, exercise. The user decides what's a habit, not the AI.
+
+### D11 — Config file over .env for API keys
+- **Context:** `.env` files crashed Expo due to Node v21.0 missing `util.parseEnv`.
+- **Decision:** Store API keys in `src/config.ts` (gitignored) instead of `.env`.
+- **Why:** Plain TypeScript import works on any Node version. No special parsing needed.
+  Same security (gitignored), simpler mechanism.
+
 <!-- Add new decisions below as we make them. -->

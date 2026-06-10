@@ -159,7 +159,21 @@ You'll learn: app assets, builds, TestFlight distribution.
 
 ## Later / optional (post-v1)
 - **Lock-screen streak widget** — the one native iOS/Swift (WidgetKit) piece.
-- Recurring reminders, snooze/edit from the notification, calendar heatmap, themes.
+- **Recurring reminders** — "every 20 minutes", "every day at 9am", "every Monday." Requires repeating notification triggers and a `recurring` field on tasks so they auto-reschedule after firing.
+- Snooze/edit from the notification, calendar heatmap, themes.
+- **Conversational context** — LLM remembers recent messages so you can say "actually change that to 9pm" or "no 4pm instead" and it updates the existing task instead of creating a new one. Requires: sending recent chat history to the LLM as multi-turn messages, and a new `updateTask` intent kind.
+- **Multi-intent** — handle multiple requests in one message ("remind me X and also Y").
+- **Achievement system** — badges, rewards, unlockable cat skins (inspired by 喵计划).
+- **Focus timer** — Pomodoro sessions with cat companionship (inspired by 喵时计 / Cat On Chair).
+- **Data insights** — weekly/monthly productivity charts, habit heatmaps, streak visualization.
+- **Widgets** — home screen and lock screen quick access for tasks and habits.
+- **Calendar integration** — sync tasks to system calendar, reminders via system notifications.
+- **Long-term memory** — cat remembers preferences, past conversations, special dates over time (inspired by SentiCat).
+- **Voice input** — speak reminders instead of typing (inspired by 喵记多).
+- **Siri integration** — "Hey Siri, tell Cato to remind me to ___." Uses iOS Shortcuts / SiriKit Intents so you can add tasks hands-free without opening the app. Requires a native module and Siri Intent definition.
+- **Gamified habits** — fishing minigame, streak rewards, milestone celebrations.
+- **Photo-to-tasks** — take a picture of handwritten notes, a whiteboard, or a journal page, and the LLM extracts tasks from it. Uses the phone camera + OpenAI's vision API (gpt-4o can read images). If it can't read the handwriting, it asks you to clarify instead of guessing wrong. Could also work with screenshots of texts/emails.
+- **System integrations** — "wake me up at 9am" triggers an actual alarm, "call mom" opens the dialer, "play my playlist" opens Spotify, "set a timer for 20 min" creates a countdown. Uses iOS URL schemes and Intents to hand off to other apps. Each integration is a new `kind` the LLM can return (e.g. `setAlarm`, `openApp`).
 
 ## Our cadence
 After each phase: it runs, we wrote a `journal/` entry, and `04-decisions.md` is updated if
