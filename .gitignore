@@ -31,7 +31,14 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
+
+# config with API keys
+src/config.ts
+
+# learning journals (personal notes)
+docs/journal/
 
 # typescript
 *.tsbuildinfo
@@ -39,3 +46,6 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# personal docs
+docs/cato-walkthrough.html
