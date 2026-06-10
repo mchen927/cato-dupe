@@ -34,7 +34,7 @@ yarn-error.*
 .env
 .env*.local
 
-# config with API keys
+# config w api
 src/config.ts
 
 # learning journals (personal notes)
